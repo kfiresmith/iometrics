@@ -4,10 +4,10 @@
 #
 measurement="iometrics-latency"
 tag_set="" #comma separated key=values
-debug=false
+debug=true
 
 # This is the path to run IO Latency ping against - the path will decide the underlying filesystem, and components beneath for analysis.
-TESTPATH=/opt/
+TESTPATH=/opt
 TESTDIR=".benchmark"
 
 which logger >/dev/null 2>&1 || exit 22
@@ -23,7 +23,7 @@ fi
 
 # Run ioping w/ a 0.1s interval, 21 times, using sync & write options, return the 6th output field,
 #  which is average latency in nanoseconds
-TESTCOMMAND=$(ioping -i 0.1 -print-count 20 -c 21 -W -Y -s 128k -q $TESTPATH/$TESTDIR | cut -f6 -d' ')
+TESTCOMMAND=$(ioping -i 0.5 -p 10 -c 11 -W -Y -s 128k -q $TESTPATH/$TESTDIR | cut -f6 -d' ')
 
 TESTMS="$(awk -v var1=$TESTCOMMAND -v var2=1000000 'BEGIN { print  ( var1 / var2 ) }')"
 
