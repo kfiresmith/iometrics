@@ -38,7 +38,7 @@ fi
 test_that_dir ()  {
   [[ -d $1/$TESTDIR ]]
   if [[ $? -ne 0 ]]; then
-    logger -t iometrics-telegraf "benchmark directory $TESTPATH/$TESTDIR doesn't exist"
+    logger -t iometrics-telegraf "benchmark directory $1/$TESTDIR doesn't exist"
     exit 44
   fi
 }
