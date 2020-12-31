@@ -58,7 +58,7 @@ run_benchmark () {
 influx_line_protocol_output () {
   # Print the actual measurement.  When Telegraf execs this script, it'll take this output and ship it.
   tag_set="path=$1"
-  printf "$MEASUREMENT,$tag_set, ioping_latency=$IOPING_MILLISECONDS $(date +%s%N) \n"
+  printf "$MEASUREMENT,$tag_set ioping_latency=$IOPING_MILLISECONDS $(date +%s%N) \n"
 }
 
 for path in $TESTPATH; do
